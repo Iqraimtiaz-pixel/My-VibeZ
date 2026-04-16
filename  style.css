@@ -1,0 +1,119 @@
+/* =====================================================
+   VibeZ — Global Stylesheet  (style.css)
+   Import this in main.jsx:  import './style.css'
+   ===================================================== */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+/* ── Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Design Tokens ──────────────────────────────────── */
+:root {
+  --bg:         #080612;
+  --surface:    #110e22;
+  --card:       #17122e;
+  --border:     #2a2050;
+  --primary:    #8b5cf6;
+  --primary-dk: #7c3aed;
+  --primary-lt: #a78bfa;
+  --accent:     #f472b6;
+  --teal:       #2dd4bf;
+  --green:      #10b981;
+  --amber:      #f59e0b;
+  --red:        #ef4444;
+  --text:       #ede9fe;
+  --text-mid:   #a89cc8;
+  --text-soft:  #6b5f8a;
+  --text-faint: #3d3060;
+  --font:       'Inter', system-ui, sans-serif;
+  --font-disp:  'Syne', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+}
+
+/* ── Base ───────────────────────────────────────────── */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+input, textarea, button, select { font-family: var(--font); outline: none; }
+input::placeholder, textarea::placeholder { color: var(--text-faint); }
+button { cursor: pointer; }
+
+::selection { background: rgba(139,92,246,.35); color: white; }
+
+/* ── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(139,92,246,.2); border-radius: 4px; }
+* { scrollbar-width: thin; scrollbar-color: rgba(139,92,246,.2) transparent; }
+
+/* ── Animations ─────────────────────────────────────── */
+@keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+@keyframes slideUp   { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes slideR    { from{transform:translateX(100%)} to{transform:translateX(0)} }
+@keyframes popIn     { from{transform:scale(.65);opacity:0} to{transform:scale(1);opacity:1} }
+@keyframes floatY    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes glowPulse { 0%,100%{box-shadow:0 0 24px rgba(139,92,246,.3)} 50%{box-shadow:0 0 52px rgba(139,92,246,.65)} }
+@keyframes msgIn     { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes loadBar   { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes callPulse { 0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.5)} 70%{box-shadow:0 0 0 22px rgba(239,68,68,0)} }
+@keyframes blink     { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes revealIn  { 0%{opacity:0;transform:scale(.8)} 70%{transform:scale(1.05)} 100%{opacity:1;transform:scale(1)} }
+@keyframes dotPulse  { 0%,80%,100%{transform:scale(0)} 40%{transform:scale(1)} }
+@keyframes idGlow    { 0%,100%{text-shadow:0 0 8px rgba(139,92,246,.4)} 50%{text-shadow:0 0 20px rgba(139,92,246,.9),0 0 40px rgba(244,114,182,.4)} }
+@keyframes stepIn    { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
+@keyframes successPop{ 0%{transform:scale(0)} 70%{transform:scale(1.15)} 100%{transform:scale(1)} }
+@keyframes shimmer   { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes vanish    { 0%{opacity:1;transform:scale(1)} 80%{opacity:.3;transform:scale(.95)} 100%{opacity:0;transform:scale(.88)} }
+
+/* ── App wrapper ─────────────────────────────────────── */
+.vz {
+  max-width: 430px;
+  margin: 0 auto;
+  height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  font-family: var(--font);
+  box-shadow: 0 0 80px rgba(139,92,246,.12);
+}
+
+@media (max-width: 430px) {
+  .vz { max-width: 100%; box-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
